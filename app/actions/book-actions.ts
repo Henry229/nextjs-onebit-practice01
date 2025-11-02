@@ -30,3 +30,14 @@ export async function createBook(bookData: {
 
   return await response.json();
 }
+
+export async function deleteBook(id: number) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${id}`,
+    { method: 'DELETE' }
+  );
+  if (!response.ok) {
+    throw new Error(`Failed to delete book: ${response.statusText}`);
+  }
+  revalidateTag('all-books', 'default');
+}
