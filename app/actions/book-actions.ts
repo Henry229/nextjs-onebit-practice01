@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidateTag } from 'next/cache';
+import { updateTag } from 'next/cache';
 
 export async function createBook(bookData: {
   title: string;
@@ -26,7 +26,7 @@ export async function createBook(bookData: {
   }
 
   // 캐시 무효화
-  revalidateTag('all-books', 'default');
+  updateTag('all-books');
 
   return await response.json();
 }
@@ -39,5 +39,5 @@ export async function deleteBook(id: number) {
   if (!response.ok) {
     throw new Error(`Failed to delete book: ${response.statusText}`);
   }
-  revalidateTag('all-books', 'default');
+  updateTag('all-books');
 }
