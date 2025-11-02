@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'shopping-phinf.pstatic.net',
       },
+      {
+        protocol: 'https',
+        hostname: 'contents.kyobobook.co.kr',
+      },
     ],
   },
   logging: {
