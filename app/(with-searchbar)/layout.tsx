@@ -3,8 +3,10 @@ import Searchbar from '../components/searchbar';
 
 export default function SearchLayout({
   children,
+  modal,
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <div>
@@ -12,6 +14,8 @@ export default function SearchLayout({
         <Searchbar />
       </Suspense>
       {children}
+      {modal}
+      <div id='modal-root'></div>
     </div>
   );
 }
