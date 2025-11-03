@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { BookData } from '../types/types';
 import Image from 'next/image';
 import BookItemDeleteButton from './book-item-delete-button';
+import BookItemEditButton from './book-item-edit-button';
 
 type BookItemProps = Pick<
   BookData,
@@ -37,7 +38,11 @@ export default function BookItem({
           </p>
         </div>
       </Link>
-      <BookItemDeleteButton bookId={id} />
+
+      <div className='cursor-pointer'>
+        <BookItemEditButton bookId={id} />
+        <BookItemDeleteButton bookId={id} />
+      </div>
     </div>
   );
 }

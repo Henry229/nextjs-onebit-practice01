@@ -1,17 +1,11 @@
+import { getBooks } from '../actions/book-actions';
 import BookItem from '../components/book-item';
 import { BookData } from '../types/types';
 import { CirclePlus } from 'lucide-react';
 import Link from 'next/link';
 
 export default async function AllBooks() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`,
-    { next: { revalidate: 86400, tags: ['all-books'] } }
-  );
-  if (!response.ok) {
-    return <div>Error in All Books: {response.statusText}</div>;
-  }
-  const allBooks: BookData[] = await response.json();
+  const allBooks: BookData[] = await getBooks();
   return (
     <div className='border-t-2 border-gray-700 p-4'>
       <div className='flex items-center justify-end'>
