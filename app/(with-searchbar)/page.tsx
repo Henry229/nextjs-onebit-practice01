@@ -14,7 +14,12 @@ import AllBooks from '@/app/allbooks/page';
 async function RecoBooks() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/random`,
-    { next: { revalidate: 3 } }
+    {
+      next: {
+        revalidate: 86400, // 24시간 (60 * 60 * 24)
+        tags: ['all-books'], // 필요시 수동 재검증도 가능
+      },
+    }
   );
   if (!response.ok) {
     return <div>Error in Recommendation Books: {response.statusText}</div>;
@@ -29,7 +34,7 @@ async function RecoBooks() {
   );
 }
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic'; // 제거: revalidate와 충돌하므로 주석 처리
 
 export default async function Home() {
   return (

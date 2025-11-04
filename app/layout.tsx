@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 async function Footer() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`,
-    { cache: 'force-cache' }
+    { next: { revalidate: 86400, tags: ['all-books'] } }
   );
   if (!response.ok) {
     return <div>Error in Footer: {response.statusText}</div>;
